@@ -1,0 +1,17 @@
+import Tkinter
+import tkMessageBox
+print "hello"
+
+top = Tkinter.Tk()
+
+def helloCallBack():
+        tkMessageBox.showinfo( "Hello, hello", "so much hello")
+def byeCallBack():
+        tkMessageBox.showinfo("Goodbye Goodbye", "very bye")
+
+B = Tkinter.Button(top, text = "Hi", command = helloCallBack)
+B2 = Tkinter.Button(top, text = "Bye", command = byeCallBack)
+
+B.pack()
+B2.pack()
+top.mainloop()
