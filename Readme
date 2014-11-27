@@ -1,0 +1,7 @@
+Readme for ProjectEuler.py
+
+Displays solutions to problems taken from https://projecteuler.net/
+Minimal graphical interface also shows code for each solution.
+Uses Tkinter libraries for graphical interface.
+
+Matthew Eads.
