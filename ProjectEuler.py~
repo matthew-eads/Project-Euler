@@ -24,7 +24,7 @@ def showResult(description, result, code):
     close.pack()
     code = Button(newtop, text = "Show Code", command = codefunc)
     code.pack()
-    text = Text(newtop, height = (len(description)+len(result))/80+5, wrap = WORD)
+    text = Text(newtop, height = 5, wrap = WORD)
     text.insert(INSERT, description)
     text.insert(INSERT, "\n")
     text.insert(END, result)
@@ -180,10 +180,9 @@ def p7():
     result = "10001st prime is: " + str(primes[10001])
     code = getCode("p7")
     showResult(description, result, code)
-
 def p8():
     description = "Find the thirteen adjacent digits in the following"
-    description += " 1000-digit number whith the greatest product\n"
+    description += " 1000-digit number whith the greatest product"
     number = "73167176531330624919225119674426574742355349194934"
     number += "96983520312774506326239578318016984801869478851843"
     number += "85861560789112949495459501737958331952853208805511"
@@ -204,29 +203,12 @@ def p8():
     number += "84580156166097919133875499200524063689912560717606"
     number += "05886116467109405077541002256983155200055935729725"
     number += "71636269561882670428252483600823257530420752963450"
-    description += number
-    result = "Greatest product is: "
+    description += str(number)
     #_BEGIN_
-    max = 0
-    start = 0
-    end = 13
-    x = 0
-    while x < 1000-12:
-        product = 1
-        y = 0
-        while y < 13:
-            if number[y+x] == '0':
-                break
-            product *= int(number[y+x])
-            y += 1
-        if product >= max:
-            max = product
-            start = x
-            end = x + 13
-        x += 1
-    result += str(max)
+    #not coded
     #_END_
-    code = getCode("p8")
+    result = number
+    code = getCode("p7")
     showResult(description, result, code)
 
 B1= Button(top, text = "Problem 1", command = p1)
