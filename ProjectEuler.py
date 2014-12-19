@@ -1,3 +1,10 @@
+# ProjectEuler.py
+# by Matthew Eads
+#
+# Graphical interface for solving and displaying solutions to select problems
+# from www.projecteuler.org
+
+
 from Tkinter import *
 from dill.source import getsource
 from functools import partial
@@ -5,34 +12,45 @@ from math import sqrt
 from math import factorial
 
 top = Tk()
+# Displays window with description of problem, the result, and an option to
+# show the code for finding the solution
+# Takes the description, result, and code for a solution (all strings)
 def showResult(description, result, code):
+    # Create new window
     newtop = Toplevel()
     showcode = False
     def closeWin():
         newtop.withdraw()
+    # Displays given code
     def showCode(code):
         showcode = True
         codebloc = Text(newtop)
-        #codebloc.insert(INSERT, "code goes here")
-        #print "heres code: "
-        #print code
         codebloc.insert(INSERT, code)
         codebloc.insert(END, "")
         codebloc.pack()
+
     codefunc = partial(showCode, code)
+    # Create close buton
     close = Button(newtop, text = "Close", command = closeWin)
     close.pack()
+    # Create Show Code button
     code = Button(newtop, text = "Show Code", command = codefunc)
     code.pack()
+
+    # Display description and result of code
     text = Text(newtop, height = (len(description)+len(result))/80+5, wrap = WORD)
     text.insert(INSERT, description)
     text.insert(INSERT, "\n")
     text.insert(END, result)
     text.pack()
+    
     if showcode:
         text.insert(END, code)
+
     newtop.mainloop()
 
+# Returns a string containing the code used for the given function
+# Only retrieves code between the _BEGIN_ and _END_ tags
 def getCode(func):
     allcode = getsource(eval(func))
     start = allcode.index("_BEGIN_") + len("_BEGIN_") + 1
@@ -40,6 +58,11 @@ def getCode(func):
     code = str("".join(map(str, allcode[start:end])))
     return code
 
+################## Functions for solving problems ##############################
+# All functions take no arguments, and return nothing, just calling a function
+# to display the result of the problem in a new window.
+# Certain elements, such as descriptions and given numbers, are hard-coded
+################################################################################
 def p1():
     sum  = 0
     #begin code _BEGIN_
@@ -229,6 +252,7 @@ def p8():
     code = getCode("p8")
     showResult(description, result, code)
 
+# Define and pack all buttons for completed problems
 B1= Button(top, text = "Problem 1", command = p1)
 B2 = Button(top, text = "Problem 2", command = p2)
 B3 = Button(top, text = "Problem 3", command = p3)
